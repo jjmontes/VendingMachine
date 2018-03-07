@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Tests", "VendingMachine.Tests\VendingMachine.Tests.csproj", "{7D019DB4-720E-4FAF-9F37-FA3CD5C1A669}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Domain", "VendingMachine.Domain\VendingMachine.Domain.csproj", "{93502397-3A63-4434-93D7-C19F948FEDF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{7D019DB4-720E-4FAF-9F37-FA3CD5C1A669}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D019DB4-720E-4FAF-9F37-FA3CD5C1A669}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D019DB4-720E-4FAF-9F37-FA3CD5C1A669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93502397-3A63-4434-93D7-C19F948FEDF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93502397-3A63-4434-93D7-C19F948FEDF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93502397-3A63-4434-93D7-C19F948FEDF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93502397-3A63-4434-93D7-C19F948FEDF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
