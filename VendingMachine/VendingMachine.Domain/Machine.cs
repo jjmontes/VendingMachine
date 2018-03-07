@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VendingMachine.Domain
 {
@@ -20,18 +21,22 @@ namespace VendingMachine.Domain
             _moneyToReturn -= price;
             while (ThereIsMoneyToReturn())
             {
-                foreach (var billete in _billetes)
-                {
-                    if (_moneyToReturn - billete >= 0)
-                    {
-                        AgregarAlVuelto(billete, ref change);
-                        _moneyToReturn -= billete;
-                        break;
-                    }
-                }
+                var billToReturn = GetBillToReturn();
+                AgregarAlVuelto(billToReturn, ref change);
+                _moneyToReturn -= billToReturn;
             }
 
             return change;
+        }
+
+        private int GetBillToReturn()
+        {
+            foreach (var billete in _billetes)
+            {
+                if (_moneyToReturn - billete >= 0) return billete;
+            }
+
+            throw new NotImplementedException("Si no existe un billete para devolver... ¿que debería hacer el sistema?");
         }
 
         private bool ThereIsMoneyToReturn()
