@@ -5,6 +5,7 @@ namespace VendingMachine.Domain
     public class Machine
     {
         private int[] _billetes;
+        private decimal _moneyToReturn;
 
         public Machine()
         {
@@ -14,22 +15,28 @@ namespace VendingMachine.Domain
         public IDictionary<int, int> GetChange(decimal price, decimal pay)
         {
             var change = new Dictionary<int, int>();
+            _moneyToReturn = pay;
 
-            pay -= price;
-            while (pay > 0)
+            _moneyToReturn -= price;
+            while (ThereIsMoneyToReturn())
             {
                 foreach (var billete in _billetes)
                 {
-                    if (pay - billete >= 0)
+                    if (_moneyToReturn - billete >= 0)
                     {
                         AgregarAlVuelto(billete, ref change);
-                        pay -= billete;
+                        _moneyToReturn -= billete;
                         break;
                     }
                 }
             }
 
             return change;
+        }
+
+        private bool ThereIsMoneyToReturn()
+        {
+            return _moneyToReturn > 0;
         }
 
         private void AgregarAlVuelto(int billete, ref Dictionary<int, int> change)
