@@ -12,7 +12,7 @@ namespace VendingMachine.Tests
         {
             var machine = new Machine();
 
-            var change = machine.GetChange(10, 100);
+            var change = machine.Buy(10).PayWith(100).GetChange();
 
             Assert.AreEqual(2, change.Count());
             Assert.AreEqual(2, change[20]);
@@ -24,7 +24,7 @@ namespace VendingMachine.Tests
         {
             var machine = new Machine();
 
-            var change = machine.GetChange(20, 100);
+            var change = machine.Buy(20).PayWith(100).GetChange();
 
             Assert.AreEqual(3, change.Count());
             Assert.AreEqual(1, change[10]);

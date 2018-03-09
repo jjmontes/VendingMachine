@@ -7,18 +7,32 @@ namespace VendingMachine.Domain
     {
         private int[] _billetes;
         private decimal _moneyToReturn;
+        private decimal _price;
+        private decimal _pay;
 
         public Machine()
         {
             _billetes = new int[5] { 100, 50, 20, 10, 5 };
         }
 
-        public IDictionary<int, int> GetChange(decimal price, decimal pay)
+        public Machine Buy(decimal price)
+        {
+            _price = price;
+            return this;
+        }
+
+        public Machine PayWith(decimal pay)
+        {
+            _pay = pay;
+            return this;
+        }
+
+        public IDictionary<int, int> GetChange()
         {
             var change = new Dictionary<int, int>();
-            _moneyToReturn = pay;
+            _moneyToReturn = _pay;
 
-            _moneyToReturn -= price;
+            _moneyToReturn -= _price;
             while (ThereIsMoneyToReturn())
             {
                 var billToReturn = GetBillToReturn();
