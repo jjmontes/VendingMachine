@@ -22,7 +22,7 @@ namespace VendingMachine.Domain
             while (ThereIsMoneyToReturn())
             {
                 var billToReturn = GetBillToReturn();
-                AgregarAlVuelto(billToReturn, ref change);
+                AddBillToChange(billToReturn, ref change);
                 _moneyToReturn -= billToReturn;
             }
 
@@ -44,7 +44,7 @@ namespace VendingMachine.Domain
             return _moneyToReturn > 0;
         }
 
-        private void AgregarAlVuelto(int billete, ref Dictionary<int, int> change)
+        private void AddBillToChange(int billete, ref Dictionary<int, int> change)
         {
             if (change.ContainsKey(billete))
                 change[billete]++;
