@@ -29,6 +29,11 @@ namespace VendingMachine.Domain
             return change;
         }
 
+        private bool ThereIsMoneyToReturn()
+        {
+            return _moneyToReturn > 0;
+        }
+
         private int GetBillToReturn()
         {
             foreach (var billete in _billetes)
@@ -37,11 +42,6 @@ namespace VendingMachine.Domain
             }
 
             throw new NotImplementedException("Si no existe un billete para devolver... ¿que debería hacer el sistema?");
-        }
-
-        private bool ThereIsMoneyToReturn()
-        {
-            return _moneyToReturn > 0;
         }
 
         private void AddBillToChange(int billete, ref Dictionary<int, int> change)
