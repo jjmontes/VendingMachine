@@ -15,8 +15,11 @@ namespace VendingMachine.Tests
             var change = machine.Buy(10).PayWith(100).GetChange();
 
             Assert.AreEqual(2, change.Count());
-            Assert.AreEqual(2, change[20]);
-            Assert.AreEqual(1, change[50]);
+            Assert.AreEqual(0, change.CountFromBill(100));
+            Assert.AreEqual(1, change.CountFromBill(50));
+            Assert.AreEqual(2, change.CountFromBill(20));
+            Assert.AreEqual(0, change.CountFromBill(10));
+            Assert.AreEqual(0, change.CountFromBill(5));
         }
 
         [Test]
@@ -27,9 +30,11 @@ namespace VendingMachine.Tests
             var change = machine.Buy(20).PayWith(100).GetChange();
 
             Assert.AreEqual(3, change.Count());
-            Assert.AreEqual(1, change[10]);
-            Assert.AreEqual(1, change[20]);
-            Assert.AreEqual(1, change[50]);
+            Assert.AreEqual(0, change.CountFromBill(100));
+            Assert.AreEqual(1, change.CountFromBill(50));
+            Assert.AreEqual(1, change.CountFromBill(20));
+            Assert.AreEqual(1, change.CountFromBill(10));
+            Assert.AreEqual(0, change.CountFromBill(5));
         }
 
     }

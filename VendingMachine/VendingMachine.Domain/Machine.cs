@@ -27,16 +27,16 @@ namespace VendingMachine.Domain
             return this;
         }
 
-        public IDictionary<int, int> GetChange()
+        public Bills GetChange()
         {
-            var change = new Dictionary<int, int>();
+            var change = new Bills();
             _moneyToReturn = _pay;
 
             _moneyToReturn -= _price;
             while (ThereIsMoneyToReturn())
             {
                 var billToReturn = GetBillToReturn();
-                AddBillToChange(billToReturn, ref change);
+                change.AddOneBill(billToReturn);
                 _moneyToReturn -= billToReturn;
             }
 
@@ -57,14 +57,5 @@ namespace VendingMachine.Domain
 
             throw new NotImplementedException("Si no existe un billete para devolver... ¿que debería hacer el sistema?");
         }
-
-        private void AddBillToChange(int billete, ref Dictionary<int, int> change)
-        {
-            if (change.ContainsKey(billete))
-                change[billete]++;
-            else
-                change.Add(billete, 1);
-        }
     }
-
 }
