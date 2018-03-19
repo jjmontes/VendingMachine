@@ -36,5 +36,7 @@ namespace VendingMachine.Domain
         {
             return _bills[value];
         }
+
+        public int[] BillValues { get { return _bills.Keys.ToArray(); } }
     }
 }

@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace VendingMachine.Domain
 {
     public class Machine
     {
-        private int[] _billetes;
         private decimal _moneyToReturn;
         private decimal _price;
         private decimal _pay;
-
-        public Machine()
-        {
-            _billetes = new int[5] { 100, 50, 20, 10, 5 };
-        }
 
         public Machine Buy(decimal price)
         {
@@ -30,12 +23,11 @@ namespace VendingMachine.Domain
         public Bills GetChange()
         {
             var change = new Bills();
-            _moneyToReturn = _pay;
+            _moneyToReturn = _pay - _price;
 
-            _moneyToReturn -= _price;
             while (ThereIsMoneyToReturn())
             {
-                var billToReturn = GetBillToReturn();
+                var billToReturn = GetBillToReturn(change.BillValues);
                 change.AddOneBill(billToReturn);
                 _moneyToReturn -= billToReturn;
             }
@@ -48,11 +40,11 @@ namespace VendingMachine.Domain
             return _moneyToReturn > 0;
         }
 
-        private int GetBillToReturn()
+        private int GetBillToReturn(int[] bills)
         {
-            foreach (var billete in _billetes)
+            foreach (var bill in bills)
             {
-                if (_moneyToReturn - billete >= 0) return billete;
+                if (_moneyToReturn - bill >= 0) return bill;
             }
 
             throw new NotImplementedException("Si no existe un billete para devolver... ¿que debería hacer el sistema?");
